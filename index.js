@@ -170,12 +170,14 @@ window.loadLeverJobs = function (options) {
     } else {
       console.log("Error fetching jobs.");
       jobsContainer.innerHTML = "<p class='lever-error'>Error fetching jobs.</p>";
+      Sentry.captureException(new Error("Error fetching jobs."));
     }
   };
 
   request.onerror = function() {
     console.log("Error fetching jobs.");
     jobsContainer.innerHTML = "<p class='lever-error'>Error fetching jobs.</p>";
+    Sentry.captureException(new Error("Error fetching jobs."));
   };
 
   request.send();
